@@ -1,0 +1,57 @@
+stages:
+  - Test
+  - "History Copy"
+  - Report
+
+
+test:
+  stage: Test
+  tags:
+    - testautomation-102
+  image: circleci/python:3.8-browsers
+  before_script:
+    - pip install -r requirements.txt
+  script:
+    - pytest --base_url=$BASE_URL --timeout=$TIMEOUT --alluredir=$ALLURE_DIR --headless=true
+  allow_failure: true
+  artifacts:
+    when: always
+    paths:
+      - ./$ALLURE_DIR
+    expire_in: 1 days
+  only:
+    - master
+
+history:
+  stage: "History Copy"
+  tags:
+    - testautomation-102
+  image: storytel/alpine-bash-curl
+  script:
+    - 'curl --location --output artifacts.zip "https://gitlab.zxz.su/api/v4/projects/$PROJECT_ID/jobs/artifacts/master/download?job=allure&job_token=$CI_JOB_TOKEN"'
+    - apk add unzip
+    - unzip artifacts.zip
+    - cp -r ./allure-report/history ./$ALLURE_DIR
+  allow_failure: true
+  artifacts:
+    paths:
+      - ./$ALLURE_DIR
+    expire_in: 1 days
+  when: always
+  only:
+    - master
+
+allure:
+  stage: Report
+  tags:
+    - testautomation-102
+  image: frankescobar/allure-docker-service
+  script:
+     - allure generate -c ./$ALLURE_DIR -o ./$REPORT_DIR --clean
+  artifacts:
+    paths:
+      - ./$REPORT_DIR
+    expire_in: never
+  when: always
+  only:
+    - master
