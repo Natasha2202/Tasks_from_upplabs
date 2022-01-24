@@ -1,17 +1,13 @@
 # в этом файле описание того как будут делаться проверки на странице 1-го теста
 from .base_page import BasePage
 from selenium.webdriver.common.by import By
-from locators.locators_1st_test import LocatorsSuperCalculatorPage
 
 
-import time
-
-
-class MainPage(BasePage, LocatorsSuperCalculatorPage):
-    # PAGE_TITLE = {
-    #     "selector": (By.CSS_SELECTOR, ".container div>h3"),
-    #     "name": "page title: Super calculator"
-    # }
+class MainPage(BasePage):
+    PAGE_TITLE = {
+        "selector": (By.CSS_SELECTOR, ".container div>h3"),
+        "name": "page title: Super calculator"
+    }
 
     def open(self, **kwargs):
         super().open("/")
