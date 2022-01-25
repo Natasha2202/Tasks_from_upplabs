@@ -1,5 +1,5 @@
 # этот файл будем запускать для теста, здесь прописаны сами шаги теста
-from .pages.first_e import MainPage
+from .pages.super_calculator_page import MainPage
 import pytest
 
 
