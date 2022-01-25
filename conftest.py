@@ -1,5 +1,6 @@
 # Для хранения часто используемых фикстур и хранения глобальных настроек
 import pytest
+import selenium
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
@@ -16,13 +17,14 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope="function")
 def browser(request):
-    base_url = request.config.getoption("base_url")
+    base_url = "http://juliemr.github.io/protractor-demo"
     assert base_url is not None, "url is not correct"
     default_timeout = request.config.getoption("timeout")
     assert default_timeout.isnumeric() and 0 < int(default_timeout) < 120, "timeout is not correct"
     headless = request.config.getoption("headless")
     assert (headless == "true" or headless == "false"), "incorrect headless value"
-    browser = WebDriver(url=base_url, timeout=default_timeout, headless=(headless == "true"))
+    # browser = WebDriver(url=base_url, timeout=default_timeout, headless=(headless == "false"))
+    browser = selenium.webdriver.Chrome("/usr/local/bin/chromedriver")
     yield browser
     browser.quit()
 

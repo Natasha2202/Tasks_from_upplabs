@@ -19,7 +19,7 @@ class WebDriver(webdriver.Remote):
         # noinspection PyCallByClass
         webdriver.Chrome.__init__(
             self,
-            executable_path=ChromeDriverManager().install(),
+            service=ChromeDriverManager().install(),
             options=options,
             desired_capabilities=dc
         )

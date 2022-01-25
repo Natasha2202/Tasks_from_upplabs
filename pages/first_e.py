@@ -10,7 +10,7 @@ class MainPage(BasePage):
     }
 
     def open(self, **kwargs):
-        super().open("/")
+        BasePage.open("/")
 
     def should_be_page_title(self):
         self.browser.smart_click(self.PAGE_TITLE)
