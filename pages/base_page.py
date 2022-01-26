@@ -1,6 +1,5 @@
 # Страница, от которой будут унаследованы все остальные классы
 # В ней опишем вспомогательные методы для работы с драйвером
-# from ..modules.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, WebDriverException
 from selenium.webdriver.support import expected_conditions
@@ -42,7 +41,7 @@ class BasePage:
             assert False, f"element {element['name']} is not found"
 
     def smart_click(self, _object):
-        element = self.browser.get_element(_object)
+        element = self.get_element(_object)
         for i in range(timeout * 2):
             try:
                 element.click()
@@ -52,7 +51,7 @@ class BasePage:
         assert False, f"time expired, {_object['name']} is not clickable"
 
     def smart_send_keys(self, _object, value):
-        input1 = self.browser.get_element(_object)
+        input1 = self.get_element(_object)
         for i in range(timeout * 2):
             try:
                 input1.send_keys(value)
