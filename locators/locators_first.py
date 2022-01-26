@@ -44,11 +44,11 @@ class LocatorsSuperCalculatorPage:
         "name": "expression on the second line"
     }
     RESULT_DIVISION = {
-        "selector": (By.CSS_SELECTOR, "tr td.ng-binding:last-child"),
+        "selector": (By.XPATH, "//td[text()='4']"),
         "name": "result division"
     }
     RESULT_MULTIPLICATION = {
-        "selector": (By.CSS_SELECTOR, "tr td.ng-binding:last-child"),
+        "selector": (By.XPATH, "//td[text()='16']"),
         "name": "result multiplication"
     }
     RESULT_ADDITION = {

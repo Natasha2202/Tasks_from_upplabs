@@ -29,7 +29,7 @@ class MainPage(BasePage, LocatorsSuperCalculatorPage):
         self.get_element(self.SECOND_NUMBER_FIELD)
         self.smart_send_keys(self.SECOND_NUMBER_FIELD, "4")
         self.smart_click(self.BUTTON_GO)
-        self.get_element(self.RESULT_DIVISION)
+        result_division = self.get_element(self.RESULT_DIVISION).text
         self.get_element(self.FIRST_NUMBER_FIELD)
         self.smart_send_keys(self.FIRST_NUMBER_FIELD, "4")
         self.get_element(self.OPERATIONS)
@@ -39,8 +39,16 @@ class MainPage(BasePage, LocatorsSuperCalculatorPage):
         self.get_element(self.SECOND_NUMBER_FIELD)
         self.smart_send_keys(self.SECOND_NUMBER_FIELD, "4")
         self.smart_click(self.BUTTON_GO)
-        self.get_element(self.RESULT_MULTIPLICATION)
+        result_multiplication = self.get_element(self.RESULT_MULTIPLICATION).text
         expression_first_line = self.get_element(self.FIRST_LINE_RESULT).text
         expression_second_line = self.get_element(self.SECOND_LINE_RESULT).text
+        print(1111)
+        print(result_division)
+        print(2222)
+        print(result_multiplication)
         assert expression_first_line and expression_second_line is not None, \
             "expressions are none"
+        assert "4" == result_division, \
+            "you got wrong result_division"
+        assert "16" == result_multiplication, \
+            "you got wrong result_multiplication"
