@@ -4,7 +4,7 @@ import selenium
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from .modules.webdriver import WebDriver
+# from .modules.webdriver import WebDriver
 
 
 def pytest_addoption(parser):
@@ -16,7 +16,7 @@ def pytest_addoption(parser):
 
 
 @pytest.fixture(scope="function")
-def browser(request):
+def browser_url(request):
     base_url = "http://juliemr.github.io/protractor-demo"
     assert base_url is not None, "url is not correct"
     default_timeout = request.config.getoption("timeout")
@@ -25,13 +25,6 @@ def browser(request):
     assert (headless == "true" or headless == "false"), "incorrect headless value"
     # browser = WebDriver(url=base_url, timeout=default_timeout, headless=(headless == "false"))
     browser = selenium.webdriver.Chrome("/usr/local/bin/chromedriver")
+    browser.get(base_url)
     yield browser
     browser.quit()
-
-
-@pytest.hookimpl(hookwrapper=True, tryfirst=True)  #определяет момент когда тест завалился
-def pytest_runtest_makereport(item, call):
-    outcome = yield
-    rep = outcome.get_result()
-    setattr(item, "rep_" + rep.when, rep)
-    return rep

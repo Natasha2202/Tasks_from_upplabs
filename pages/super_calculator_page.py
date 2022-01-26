@@ -25,44 +25,39 @@ class MainPage(BasePage):
         "name": "result field"
     }
 
-    def open(self, **kwargs):
-        BasePage.open("/")
-
     def should_be_page_title(self):
-        self.browser.smart_click(self.PAGE_TITLE)
-        title_page = self.browser.get_element(MainPage.PAGE_TITLE).text
+        title_page = self.get_element(MainPage.PAGE_TITLE).text
         assert "Super Calculator" == title_page, \
             "there is no correct page title"
 
     def should_be_result_of_adding_numbers(self):
-        self.browser.get_element(self.FIRST_NUMBER_FIELD)
-        self.browser.smart_send_keys(self.FIRST_NUMBER_FIELD, "8")
-        self.browser.get_element(self.SECOND_NUMBER_FIELD)
-        self.browser.smart_send_keys(self.SECOND_NUMBER_FIELD, "8")
-        self.browser.smart_click(self.BUTTON_GO)
+        self.get_element(self.FIRST_NUMBER_FIELD)
+        self.smart_send_keys(self.FIRST_NUMBER_FIELD, "8")
+        self.get_element(self.SECOND_NUMBER_FIELD)
+        self.smart_send_keys(self.SECOND_NUMBER_FIELD, "8")
+        self.smart_click(self.BUTTON_GO)
         result_addition = self.browser.find_element(By.CSS_SELECTOR, "tr td.ng-binding:last-child").text
         assert "16" == result_addition, \
             "you got wrong result_addition"
 
-
     def history_session_calculator_results(self):
-        self.browser.get_element(self.FIRST_NUMBER_FIELD)
-        self.browser.smart_send_keys(self.FIRST_NUMBER_FIELD, "16")
+        self.get_element(self.FIRST_NUMBER_FIELD)
+        self.smart_send_keys(self.FIRST_NUMBER_FIELD, "16")
         select_operation = self.browser.find_element(By.CSS_SELECTOR, "select.span1")
-        select_operation.find_element(By.XPATH, "//option[text() = "/"]")
-        self.browser.get_element(self.SECOND_NUMBER_FIELD)
-        self.browser.smart_send_keys(self.SECOND_NUMBER_FIELD, "4")
-        self.browser.smart_click(self.BUTTON_GO)
+        select_operation.find_element(By.XPATH, "//option[text() = '/']")
+        self.get_element(self.SECOND_NUMBER_FIELD)
+        self.smart_send_keys(self.SECOND_NUMBER_FIELD, "4")
+        self.smart_click(self.BUTTON_GO)
         result_division = self.browser.find_element(By.CSS_SELECTOR, "tr td.ng-binding:last-child").text
         assert "4" == result_division, \
             "you got wrong result_division"
-        self.browser.get_element(self.FIRST_NUMBER_FIELD)
-        self.browser.smart_send_keys(self.FIRST_NUMBER_FIELD, "4")
+        self.get_element(self.FIRST_NUMBER_FIELD)
+        self.smart_send_keys(self.FIRST_NUMBER_FIELD, "4")
         select_operation = self.browser.find_element(By.CSS_SELECTOR, "select.span1")
-        select_operation.find_element(By.XPATH, "//option[text()="*"]")
-        self.browser.get_element(self.SECOND_NUMBER_FIELD)
-        self.browser.smart_send_keys(self.SECOND_NUMBER_FIELD, "4")
-        self.browser.smart_click(self.BUTTON_GO)
+        select_operation.find_element(By.XPATH, "//option[text()='*']")
+        self.get_element(self.SECOND_NUMBER_FIELD)
+        self.smart_send_keys(self.SECOND_NUMBER_FIELD, "4")
+        self.smart_click(self.BUTTON_GO)
         result_multiplication = self.browser.find_element(By.CSS_SELECTOR, "tr td.ng-binding:last-child").text
         assert "16" == result_multiplication, \
             "you got wrong result_multiplication"
