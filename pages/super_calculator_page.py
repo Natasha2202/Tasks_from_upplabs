@@ -1,6 +1,6 @@
 # This page contains a description of how checks will be done on the super calculator page
 from .base_page import BasePage
-from locators.locators_first import LocatorsSuperCalculatorPage
+from locators.locators_super_calculator_page import LocatorsSuperCalculatorPage
 
 
 class MainPage(BasePage, LocatorsSuperCalculatorPage):
@@ -42,10 +42,6 @@ class MainPage(BasePage, LocatorsSuperCalculatorPage):
         result_multiplication = self.get_element(self.RESULT_MULTIPLICATION).text
         expression_first_line = self.get_element(self.FIRST_LINE_RESULT).text
         expression_second_line = self.get_element(self.SECOND_LINE_RESULT).text
-        print(1111)
-        print(result_division)
-        print(2222)
-        print(result_multiplication)
         assert expression_first_line and expression_second_line is not None, \
             "expressions are none"
         assert "4" == result_division, \
