@@ -7,7 +7,7 @@ Pull sources
 
 Run
 
-git clone https://github.com/Natasha2202/Tasks_from_upplabs
+git clone git@github.com:Natasha2202/Tasks_from_upplabs.git
 
 Download chromedriver
 
