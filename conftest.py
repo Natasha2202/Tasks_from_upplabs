@@ -1,4 +1,4 @@
-# Для хранения часто используемых фикстур и хранения глобальных настроек
+# This page is for storing frequently used fixtures and storing global settings
 import pytest
 import selenium
 from selenium import webdriver

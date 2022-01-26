@@ -1,5 +1,5 @@
-# Страница, от которой будут унаследованы все остальные классы
-# В ней опишем вспомогательные методы для работы с драйвером
+# The page from which all other classes will be inherited
+# In it we describe auxiliary methods for working with the driver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, WebDriverException
 from selenium.webdriver.support import expected_conditions

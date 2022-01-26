@@ -1,5 +1,4 @@
-# в этом файле описание того как будут делаться проверки на странице 1-го теста
-import time
+# This page contains a description of how checks will be done on the super calculator page
 from .base_page import BasePage
 from locators.locators_first import LocatorsSuperCalculatorPage
 
@@ -19,7 +18,6 @@ class MainPage(BasePage, LocatorsSuperCalculatorPage):
         result_addition = self.get_element(self.RESULT_ADDITION).text
         assert "16" == result_addition, \
             "you got wrong result_addition"
-        time.sleep(2)
 
     def history_session_calculator_results(self):
         self.get_element(self.FIRST_NUMBER_FIELD)

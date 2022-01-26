@@ -1,4 +1,4 @@
-# этот файл будем запускать для теста, здесь прописаны сами шаги теста
+# We will run this file for tests
 from .pages.super_calculator_page import MainPage
 
 

@@ -1,4 +1,4 @@
-# в этом файле описание селекторов для 1-й страницы
+# This page describes the selectors for super calculator page
 from selenium.webdriver.common.by import By
 
 
